@@ -1,0 +1,115 @@
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+  width: 100%;
+  color: #1d285c;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 1rem;
+  text-align: left;
+}
+
+.header {
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+
+.header .h1 {
+  font-size: 3rem;
+}
+.h1 {
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+.introText {
+  font-size: 2rem;
+}
+
+.grid {
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  font-size: 1rem;
+  line-height: 2rem;
+  list-style: none;
+  font-weight: 300;
+  width: 100%;
+  padding: 0;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 2rem;
+}
+
+.grid__ig {
+
+  column-gap: 1rem;
+  row-gap: 2rem;
+
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+}
+
+.movieList__item {
+  display: flex;
+  flex-direction: column;
+  color: #1d285c;
+  line-height: 1.5rem;
+}
+
+.movieLink {
+  color: currentColor;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.movieLink:hover {
+  color: orange;
+}
+
+.via {
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.via a {
+  font-weight: 0.75rem;
+  font-weight: 500;
+  color: orange;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.igItem {
+  display: block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.igPhoto {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  display: block;
+  grid-area: 1/1;
+}
+
+.movieDescription img { display: none}
+
+@media (min-width: 54rem) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .header {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}

@@ -9,7 +9,7 @@ export const getInstagram = async() => {
   async function getIG() {
     try {
       const res = await fetch(
-        `https://graph.instagram.com/${IG_USER}/media?fields=caption,media_url,id,media_type&access_token=${IG_TOKEN}&limit=10`
+        `https://graph.instagram.com/${IG_USER}/media?fields=caption,media_url,id,media_type&access_token=${IG_TOKEN}&limit=5`
       );
       const { data } = await res.json();
       const carousels = data.filter(

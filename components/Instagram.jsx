@@ -13,10 +13,10 @@ export default function Instagram({ photos = [], className }) {
   const photoGrid = photos.map((item) => {
     if (Array.isArray(item.media_url)) {
       return item.media_url.map((carouselItem, index) => (
-        <Photo {...carouselItem} />
+        <Photo key={index} {...carouselItem} />
       ));
     }
-    return <Photo {...item} />;
+    return <Photo  key={item.id} {...item} />;
   });
 
   return (

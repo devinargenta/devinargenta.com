@@ -1,14 +1,16 @@
+import { useContext, useState, createContext } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+
 import { getInstagram } from '../services/instagram';
 import { getLastPlayed, getTopTracks } from '../services/spotify';
 import { getLetterboxd } from '../services/letterboxd';
-import { useContext, useState, createContext } from 'react';
+
+import Header from '../components/Header';
 import LetterBoxd from '../components/Letterboxd';
 import Section from '../components/Section';
 import Instagram from '../components/Instagram';
 import { SpotifyLastPlayed, SpotifyTopTracks } from '../components/Spotify';
-import Header from '../components/Header';
 
 const Theme = createContext();
 

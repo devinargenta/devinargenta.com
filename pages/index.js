@@ -109,7 +109,7 @@ export default function Home({ lbox = {}, ig = [] }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const token = process.env.IG_TOKEN;
   const user = process.env.IG_USER;
   const getMediaURL = (id) => {
@@ -150,6 +150,7 @@ export async function getServerSideProps() {
     props: {
       lbox: rss.channel,
       ig
-    }
+    },
+    revalidate: 3600, // In seconds
   };
 }

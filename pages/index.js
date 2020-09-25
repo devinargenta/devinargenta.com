@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { getInstagram } from '../services/instagram';
 import { getLastPlayed, getTopTracks } from '../services/spotify';
@@ -7,6 +8,17 @@ const Header = () => {
   const className = [styles.section, styles.header].join(' ');
   return (
     <section className={className}>
+      <Head>
+        <title>
+          devin argenta - the worlds greatest software engineer ( is not listed
+          on this website )
+        </title>
+        <meta
+          name="Description"
+          content="the website of the worlds greatest software engineer was not able to be found at this location, but this is the website of another one"
+        ></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <h1 className={styles.h1}>devin argenta</h1>
       <p className={styles.introText}>
         one of the greatest software engineers listed on this website

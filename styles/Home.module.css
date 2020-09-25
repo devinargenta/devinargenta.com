@@ -25,7 +25,7 @@
 }
 .h1 {
   font-weight: 900;
-  color: #ff4d8d;
+  color: #ff1a7d;
   font-size: 2rem;
 }
 
@@ -74,7 +74,7 @@
 
 
 .movieLink:hover {
-  color: #ff4d8d;
+  color: #ff1a7d;
 }
 
 .via {
@@ -90,7 +90,7 @@
 }
 
 .via a:hover {
-  color: #ff4d8d;
+  color: #ff1a7d;
 }
 
 .igItem {
@@ -138,7 +138,7 @@
 }
 
 .trackLink:hover {
-  color: #ff4d8d;
+  color:#ff1a7d;
 }
 
 .artistName {

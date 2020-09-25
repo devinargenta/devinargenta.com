@@ -3,14 +3,14 @@ body {
   padding: 0;
   margin: 0;
   font-family: monospace;
-  background: #f5ffb2;
+  background: #fcffbd;
 }
 
 a {
   color: inherit;
   text-decoration: underline;
   font-weight: 600;
-  color: #ff4d8d;
+  color: #3400e2;
 }
 a:hover {
   color: #1d285c;

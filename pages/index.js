@@ -18,6 +18,7 @@ const Header = () => {
           name="Description"
           content="the website of the worlds greatest software engineer was not able to be found at this location, but this is the website of another one"
         ></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <h1 className={styles.h1}>devin argenta</h1>
       <p className={styles.introText}>

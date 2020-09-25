@@ -6,6 +6,16 @@ const Header = () => {
   const className = [styles.section, styles.header].join(' ');
   return (
     <section className={className}>
+      <Head>
+        <title>
+          devin argenta - the worlds greatest software engineer ( is not listed
+          on this website )
+        </title>
+        <meta
+          name="Description"
+          content="the website of the worlds greatest software engineer was not able to be found at this location, but this is the website of another one"
+        ></meta>
+      </Head>
       <h1 className={styles.h1}>devin argenta</h1>
       <p className={styles.introText}>
         one of the greatest software engineers listed on this website
@@ -16,7 +26,9 @@ const Header = () => {
         previously @ ESPN
       </p>
       <p>
-        u can look at my <a href="https://www.github.com/devinargenta">github</a> but it is boring
+        u can look at my{' '}
+        <a href="https://www.github.com/devinargenta">github</a> but it is
+        boring
       </p>
     </section>
   );
@@ -58,19 +70,19 @@ function LetterboxedReview(props) {
 function LetterBoxed({ movies = [], link = {} }) {
   return (
     <section className={styles.section}>
-      <h2 className={styles.h1}>movie log  <Via text="letterboxd" href={link._text} /></h2>
+      <h2 className={styles.h1}>
+        movie log <Via text="letterboxd" href={link._text} />
+      </h2>
       <ul className={styles.grid}>
         {movies.map((props, index) => (
           <LetterboxedReview {...props} key={index} />
         ))}
       </ul>
-     
     </section>
   );
 }
 
 function Instagram({ photos = [] }) {
-
   const className = [styles.grid, styles.grid__ig].join(' ');
 
   const photoGrid = photos.map((item) => {
@@ -85,16 +97,21 @@ function Instagram({ photos = [] }) {
     return (
       <li key={item.id} className={styles.igItem}>
         <img className={styles.igPhoto} src={item.media_url} />
-          <div>{item.caption}</div>
+        <div>{item.caption}</div>
       </li>
     );
   });
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.h1}>photo log  <Via text="instagram" href="https://instagram.com/personal_garbage_bin" /> </h2>
+      <h2 className={styles.h1}>
+        photo log{' '}
+        <Via
+          text="instagram"
+          href="https://instagram.com/personal_garbage_bin"
+        />{' '}
+      </h2>
       <ul className={className}>{photoGrid}</ul>
-     
     </section>
   );
 }
@@ -151,6 +168,6 @@ export async function getStaticProps() {
       lbox: rss.channel,
       ig
     },
-    revalidate: 3600, // In seconds
+    revalidate: 3600 // In seconds
   };
 }

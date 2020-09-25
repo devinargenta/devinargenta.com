@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { getInstagram } from '../services/instagram';
-import { getTopTracks } from '../services/spotify';
+import { getLastPlayed, getTopTracks } from '../services/spotify';
 import { getLetterboxd } from '../services/letterboxd';
 
 
@@ -143,11 +143,14 @@ function Track({ name, artists }) {
   )
 }
 
-function Spotify({ items = [] }) {
-  const tracks = items.map(item => <li key={item.id}><Track {...item} /></li>)
+function Spotify({ topTracks, lastPlayed }) {
+  const tracks = topTracks.items.map(item => <li key={item.id}><Track {...item} /></li>)
+  const listening = lastPlayed && !lastPlayed.error ? <Track {...lastPlayed.item} /> : 'Not listening to music :/';
   return (
       <section className={styles.section}>
-      <h2 className={styles.h1}>Top Tracks <Via text="spotify" /></h2>
+      <h2 className={styles.h1}>current song <Via text="spotify" /></h2>
+      {listening}
+      <h2 className={styles.h1}>top tracks <Via text="spotify" /></h2>
       <ul className={styles.topTracks}>
         {tracks}
       </ul>
@@ -170,13 +173,17 @@ export async function getStaticProps() {
 
   const ig = await getInstagram();
   const lbox = await getLetterboxd();
-  const spotify = await getTopTracks();
+  const topTracks = await getTopTracks();
+  const lastPlayed = await getLastPlayed();
 
   return {
     props: {
       lbox,
       ig,
-      spotify
+      spotify: {
+        topTracks,
+        lastPlayed
+      }
     },
     revalidate: 3600 // In seconds
   };

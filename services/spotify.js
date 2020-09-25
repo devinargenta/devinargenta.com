@@ -38,3 +38,18 @@ export const getTopTracks = async () => {
   });
   return await res.json();
 };
+
+export const getLastPlayed = async() => {
+  const { access_token } = await authSpotify();
+  const res = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  });
+  if(res.status !== 200) {
+    return {
+      error: 'No track currently playing'
+    }
+  }
+  return await res.json(); 
+}

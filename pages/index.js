@@ -51,7 +51,6 @@ function Home({ lbox = {}, ig = [], spotify = {} }) {
     <div className={`${styles.page} ${styles[theme]}`}>
       <div className={styles.container}>
         <Header>
-   
           <button
             className={styles.themeToggle}
             onClick={() => setTheme(theme === LIGHT ? DARK : LIGHT)}

@@ -1,4 +1,3 @@
-
 html,
 body {
   padding: 0;
@@ -9,13 +8,11 @@ body {
   color: #1d285c;
 }
 
-
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
-
 
 a {
   color: inherit;

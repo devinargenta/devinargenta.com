@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import '../styles/globals.css'
+import '../styles/globals.css';
 import * as gtag from '../services/tracking';
 
 const App = ({ Component, pageProps }) => {

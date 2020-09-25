@@ -21,7 +21,6 @@
   color: var(--colors-text);
 }
 
-
 .themeToggle {
   appearance: none;
   padding: 0;
@@ -68,7 +67,6 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
 }
-
 
 .via {
   font-size: 1rem;

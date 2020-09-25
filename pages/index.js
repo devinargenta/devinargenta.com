@@ -143,7 +143,7 @@ function Track({ name, artists }) {
   )
 }
 
-function Spotify({ items }) {
+function Spotify({ items = [] }) {
   const tracks = items.map(item => <li key={item.id}><Track {...item} /></li>)
   return (
       <section className={styles.section}>
@@ -155,7 +155,7 @@ function Spotify({ items }) {
   )
 }
 
-export default function Home({ lbox = {}, ig = [], spotify }) {
+export default function Home({ lbox = {}, ig = [], spotify  = {} }) {
   return (
     <div className={styles.container}>
       <Header />

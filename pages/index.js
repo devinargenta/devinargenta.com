@@ -4,7 +4,6 @@ import { getInstagram } from '../services/instagram';
 import { getLastPlayed, getTopTracks } from '../services/spotify';
 import { getLetterboxd } from '../services/letterboxd';
 
-
 const Header = () => {
   const className = [styles.section, styles.header].join(' ');
   return (
@@ -74,14 +73,26 @@ function LetterboxedReview(props) {
   const stars = rating && rating._text;
   filmTitle = filmTitle._text;
   return (
-    <li className={styles.movieList__item} key={props.guid._text}>
-      <a className={styles.movieLink} href={props.link._text} target="_blank">
-        <span>
-          {filmTitle} [{filmYear}]
-        </span>
-      </a>
-      {stars || <span>Not Rated !!</span>}
-    </li>
+    <a
+      className={`${styles.item} ${styles.movie}`}
+      href={props.link._text}
+      target="_blank"
+    >
+      <div
+        className={styles.movieImage}
+        dangerouslySetInnerHTML={{ __html: props.description._cdata }}
+      />
+      <div className={styles.movieDescription}>
+        <div className={styles.movieTitle}>
+          <div>
+            {filmTitle} [{filmYear}]
+          </div>
+        </div>
+        <div className={styles.movieReview}>
+          {stars ? stars : 'Not Rated !!'}
+        </div>
+      </div>
+    </a>
   );
 }
 
@@ -92,8 +103,10 @@ function LetterBoxed({ movies = [], link = {} }) {
         movie log <Via text="letterboxd" href={link._text} />
       </h2>
       <ul className={styles.grid}>
-        {movies.map((props, index) => (
-          <LetterboxedReview {...props} key={index} />
+        {movies.slice(0, 12).map((props, index) => (
+          <li key={index}>
+            <LetterboxedReview {...props} />
+          </li>
         ))}
       </ul>
     </section>
@@ -106,14 +119,14 @@ function Instagram({ photos = [] }) {
   const photoGrid = photos.map((item) => {
     if (Array.isArray(item.media_url)) {
       return item.media_url.map((carouselItem, index) => (
-        <li key={index} className={styles.igItem}>
+        <li key={index} className={`${styles.item} ${styles.photo}`}>
           <img className={styles.igPhoto} src={carouselItem.media_url} />
           <div>{item.caption}</div>
         </li>
       ));
     }
     return (
-      <li key={item.id} className={styles.igItem}>
+      <li key={item.id} className={`${styles.item} ${styles.photo}`}>
         <img className={styles.igPhoto} src={item.media_url} />
         <div>{item.caption}</div>
       </li>
@@ -134,41 +147,58 @@ function Instagram({ photos = [] }) {
   );
 }
 
-function Track({ name, artists, external_urls, ...rest}) {
+function Track({ name, artists, external_urls, ...rest }) {
   const [artist] = artists;
   return (
-    <a href={external_urls.spotify} target="_blank" className={styles.trackLink}>
-      <div className={styles.track}>
+    <a
+      href={external_urls.spotify}
+      target="_blank"
+      className={styles.trackLink}
+    >
+      <div className={`${styles.item} ${styles.track}`}>
         <img src={rest.album.images[2].url} />
         <div className={styles.trackInfo}>
-          <div className={styles.artistName}>{artist.name}</div>
           <div className={styles.trackName}>{name}</div>
+          <div className={styles.artistName}>{artist.name}</div>
         </div>
       </div>
     </a>
-  )
+  );
 }
 
 function Spotify({ topTracks, lastPlayed }) {
-  const tracks = topTracks.items.map(item => <li key={item.id}><Track {...item} /></li>)
-  const listening = lastPlayed && !lastPlayed.error ? <Track {...lastPlayed.item} /> : 'Not listening to music :/';
+  const via = (
+    <Via
+      text="spotify"
+      href="https://open.spotify.com/user/devinmetal?si=hSWYvLwaSA6o0bFtO9YoTg"
+    />
+  );
+  const tracks = topTracks.items.map((item) => (
+    <li key={item.id}>
+      <Track {...item} />
+    </li>
+  ));
+  const listening =
+    lastPlayed && !lastPlayed.error ? (
+      <Track {...lastPlayed.item} />
+    ) : (
+      'Not listening to music :/'
+    );
   return (
-      <section className={styles.section}>
-      <h2 className={styles.h1}>current song <Via text="spotify" /></h2>
+    <section className={styles.section}>
+      <h2 className={styles.h1}>current song {via}</h2>
       {listening}
-      <h2 className={styles.h1}>top tracks <Via text="spotify" /></h2>
-      <ul className={styles.topTracks}>
-        {tracks}
-      </ul>
-      </section>
-  )
+      <h2 className={styles.h1}>top tracks {via}</h2>
+      <ul className={styles.topTracks}>{tracks}</ul>
+    </section>
+  );
 }
 
-export default function Home({ lbox = {}, ig = [], spotify  = {} }) {
+export default function Home({ lbox = {}, ig = [], spotify = {} }) {
   return (
     <div className={styles.container}>
       <Header />
-      {spotify && <Spotify {...spotify} /> }
+      {spotify && <Spotify {...spotify} />}
       {ig && <Instagram photos={ig} />}
       {lbox && <LetterBoxed movies={lbox.item} link={lbox.link} />}
     </div>
@@ -176,7 +206,6 @@ export default function Home({ lbox = {}, ig = [], spotify  = {} }) {
 }
 
 export async function getStaticProps() {
-
   const ig = await getInstagram();
   const lbox = await getLetterboxd();
   const topTracks = await getTopTracks();

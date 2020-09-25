@@ -4,13 +4,14 @@ body {
   margin: 0;
   font-family: monospace;
   background: #fcffbd;
+  font-size: 14px;
 }
 
 a {
   color: inherit;
   text-decoration: underline;
   font-weight: 600;
-  color: #3400e2;
+  color: #5037c2;
 }
 a:hover {
   color: #1d285c;

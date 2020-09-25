@@ -1,5 +1,5 @@
 .container {
-  max-width: 100rem;
+  max-width: 85rem;
   margin: 0 auto;
   width: 100%;
   color: #1d285c;
@@ -38,17 +38,15 @@
   max-width: 100%;
   display: grid;
   font-size: 1rem;
-  line-height: 2rem;
   list-style: none;
   font-weight: 300;
   width: 100%;
   padding: 0;
   grid-template-columns: 1fr 1fr;
-  row-gap: 2rem;
+  grid-gap: 1rem;
 }
 
 .grid__ig {
-
   column-gap: 1rem;
   row-gap: 2rem;
 
@@ -57,24 +55,66 @@
   grid-auto-flow: dense;
 }
 
-.movieList__item {
+.item {
+  border-bottom: 1px solid #1d285c33;
+  padding: 1rem 0.25rem;
+  color: currentColor;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+li:last-child .item {
+  border-bottom: 0px;
+}
+
+.movie {
+  font-weight: bold;
+  color: #1d285c;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.photo {
+  flex-direction: column;
+}
+
+.movieImage img {
+  max-width: 48px;
+}
+
+.movieImage p {
+  margin: 0;
+}
+
+.movieImage p:last-child:not(:first-child) {
+  display: none;
+}
+
+.movie:hover .movieTitle {
+  color: #ff1a7d;
+}
+
+.movieDescription {
   display: flex;
   flex-direction: column;
-  color: #1d285c;
-  line-height: 1.5rem;
+  margin-left: 1rem;
 }
 
-.movieLink {
+.movieTitle {
+  display: flex;
+  flex-direction: column;
   text-decoration: underline;
-  font-weight: bold;
-  font-size: 1.25rem;
-  background: none;
-  color: #1d285c;
+  margin-bottom: 0.25rem;
 }
 
-
-.movieLink:hover {
-  color: #ff1a7d;
+.movieReview {
+  font-weight: normal;
+  text-decoration: none;
+  color: #1d285c;
 }
 
 .via {
@@ -86,11 +126,6 @@
   font-weight: 500;
   font-weight: bold;
   text-decoration: underline;
-  color: #1d285c;
-}
-
-.via a:hover {
-  color: #ff1a7d;
 }
 
 .igItem {
@@ -106,20 +141,12 @@
   height: auto;
   display: block;
   grid-area: 1/1;
+  margin-bottom: 1rem;
 }
 
 .topTracks {
   list-style: none;
   padding: 0;
-}
-
-.track {
-  border-bottom: 1px solid #1d285c33;
-  padding: 1rem .25rem;
-  color: currentColor;
-  font-weight: normal;
-  display: flex;
-  align-items: center;
 }
 
 .trackInfo {
@@ -138,19 +165,21 @@
 }
 
 .trackLink:hover {
-  color:#ff1a7d;
+  color: #ff1a7d;
 }
 
-.artistName {
+.trackName {
   font-weight: 600;
   text-decoration: underline;
 }
 
-.movieDescription img { display: none}
+.movieDescription img {
+  display: none;
+}
 
 @media (min-width: 54rem) {
   .container {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr;
   }
   .header {
     grid-column-start: 1;

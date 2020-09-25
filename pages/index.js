@@ -190,6 +190,6 @@ export async function getStaticProps() {
         lastPlayed
       }
     },
-    revalidate: 3600 // In seconds
+    revalidate: 200 // In seconds
   };
 }

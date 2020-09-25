@@ -1,8 +1,48 @@
+.dark {
+  --colors-text: #fcffbd;
+  --colors-link: #ff1a7d;
+  --colors-link-hover: #fff;
+  --colors-heading: #00ff85;
+  --bg-color: #141723;
+  --colors-border: #ffffff20;
+}
+
+.light {
+  --colors-text: #1d285c;
+  --colors-link: #5037c2;
+  --colors-link-hover: #1d285c;
+  --colors-heading: #ff1a7d;
+  --bg-color: #fcffbd;
+  --colors-border: #1d285c25;
+}
+
+.page {
+  background: var(--bg-color);
+  color: var(--colors-text);
+}
+
+
+.themeToggle {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  box-shadow: 0;
+  cursor: pointer;
+  background: none;
+  font-family: inherit;
+  text-decoration: underline;
+
+  border-radius: 4px;
+
+  color: var(--colors-link);
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
 .container {
   max-width: 85rem;
   margin: 0 auto;
   width: 100%;
-  color: #1d285c;
   display: grid;
   grid-template-columns: 1fr;
   grid-column-gap: 1rem;
@@ -23,9 +63,10 @@
 .header .h1 {
   font-size: 3rem;
 }
+
 .h1 {
   font-weight: 900;
-  color: #ff1a7d;
+  color: var(--colors-heading);
   font-size: 2rem;
 }
 
@@ -56,7 +97,7 @@
 }
 
 .item {
-  border-bottom: 1px solid #1d285c33;
+  border-bottom: 1px solid var(--colors-border);
   padding: 1rem 0.25rem;
   color: currentColor;
   font-weight: normal;
@@ -64,13 +105,14 @@
   align-items: center;
 }
 
+
 li:last-child .item {
   border-bottom: 0px;
 }
 
 .movie {
   font-weight: bold;
-  color: #1d285c;
+  color: var(--colors-text);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -95,7 +137,11 @@ li:last-child .item {
 }
 
 .movie:hover .movieTitle {
-  color: #ff1a7d;
+  color: var(--colors-link);
+}
+
+.movie:hover .movieReview {
+  color: var(--colors-text)
 }
 
 .movieDescription {
@@ -114,7 +160,7 @@ li:last-child .item {
 .movieReview {
   font-weight: normal;
   text-decoration: none;
-  color: #1d285c;
+  color: vars(--colors-text);
 }
 
 .via {
@@ -126,6 +172,10 @@ li:last-child .item {
   font-weight: 500;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.via a:hover {
+  color: var(--colors-link-hover);
 }
 
 .igItem {
@@ -156,7 +206,7 @@ li:last-child .item {
 .trackLink {
   text-decoration: none;
   display: block;
-  color: #1d285c;
+  color: var(--colors-text);
 }
 
 .trackLink img {
@@ -165,7 +215,11 @@ li:last-child .item {
 }
 
 .trackLink:hover {
-  color: #ff1a7d;
+  color: var(--colors-link);
+}
+
+.trackLink:hover .artistName {
+  color: var(--colors-text);
 }
 
 .trackName {

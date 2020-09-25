@@ -1,21 +1,29 @@
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: monospace;
-  background: #fcffbd;
   font-size: 14px;
+  background-color: #fcffbd;
+  color: #1d285c;
 }
+
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 
 a {
   color: inherit;
   text-decoration: underline;
   font-weight: 600;
-  color: #5037c2;
+  color: var(--colors-link);
 }
+
 a:hover {
-  color: #1d285c;
-}
-* {
-  box-sizing: border-box;
+  color: var(--colors-heading);
 }

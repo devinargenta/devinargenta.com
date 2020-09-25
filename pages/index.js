@@ -3,8 +3,23 @@ import styles from '../styles/Home.module.css';
 import { getInstagram } from '../services/instagram';
 import { getLastPlayed, getTopTracks } from '../services/spotify';
 import { getLetterboxd } from '../services/letterboxd';
+import { useContext, useState, createContext } from 'react';
 
-const Header = () => {
+const Theme = createContext();
+
+const useTheme = () => useContext(Theme);
+
+const THEMES = {
+  LIGHT: 'light',
+  DARK: 'dark'
+};
+
+function ThemeProvider({ theme, children }) {
+  const [val, setTheme] = useState(theme);
+  return <Theme.Provider value={[val, setTheme]}>{children}</Theme.Provider>;
+}
+
+const Header = ({ children }) => {
   const className = [styles.section, styles.header].join(' ');
   return (
     <section className={className}>
@@ -20,36 +35,7 @@ const Header = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <h1 className={styles.h1}>devin argenta</h1>
-      <p className={styles.introText}>
-        one of the greatest software engineers listed on this website
-      </p>
-      <p>
-        i live in brooklyn, ny with my giant freak dog named ava
-      </p>
-      <p>
-        currently a senior software engineer @ BuzzFeed
-        <br />
-        previously @ ESPN
-      </p>
-      <p>
-        <a
-          target="_blank"
-          href="mailto:devin@devinargenta.com?subject=I WAS LOOKING AT YOUR WEBSITE"
-        >
-          send me a compliment
-        </a>
-      </p>
-      <p>
-        look at my{' '}
-        <a target="_blank" href="https://www.instagram.com/devincantdraw">
-          poor art skills
-        </a>
-      </p>
-      <p>
-        u can look at my{' '}
-        <a href="https://www.github.com/devinargenta">github</a> but it is
-        boring
-      </p>
+      {children}
     </section>
   );
 };
@@ -197,14 +183,62 @@ function Spotify({ topTracks, lastPlayed }) {
   );
 }
 
-export default function Home({ lbox = {}, ig = [], spotify = {} }) {
+function Home({ lbox = {}, ig = [], spotify = {} }) {
+  const [theme, setTheme] = useContext(Theme);
+
+  const { LIGHT, DARK } = THEMES;
+
   return (
-    <div className={styles.container}>
-      <Header />
-      {spotify && <Spotify {...spotify} />}
-      {ig && <Instagram photos={ig} />}
-      {lbox && <LetterBoxed movies={lbox.item} link={lbox.link} />}
+    <div className={`${styles.page} ${styles[theme]}`}>
+      <div className={styles.container}>
+        <Header>
+          <p className={styles.introText}>
+            one of the greatest software engineers listed on this website
+          </p>
+          <p>i live in brooklyn, ny with my giant freak dog named ava</p>
+          <p>
+            currently a senior software engineer @ BuzzFeed
+            <br />
+            previously @ ESPN
+          </p>
+          <p>
+            <a
+              target="_blank"
+              href="mailto:devin@devinargenta.com?subject=I WAS LOOKING AT YOUR WEBSITE"
+            >
+              send me a compliment
+            </a>
+          </p>
+          <p>
+            look at my{' '}
+            <a target="_blank" href="https://www.instagram.com/devincantdraw">
+              poor art skills
+            </a>
+          </p>
+          <p>
+            u can look at my{' '}
+            <a href="https://www.github.com/devinargenta">github</a> but it is
+            boring
+          </p>
+          <button
+            className={styles.themeToggle}
+            onClick={() => setTheme(theme === LIGHT ? DARK : LIGHT)}
+          >
+            {theme === LIGHT ? 'its too freakin bright; please turn out the lights' : 'please turn on the lights i cant freakin see!'}
+          </button>
+        </Header>
+        {spotify && <Spotify {...spotify} />}
+        {ig && <Instagram photos={ig} />}
+        {lbox && <LetterBoxed movies={lbox.item} link={lbox.link} />}
+      </div>
     </div>
+  );
+}
+export default function PageProvider(props) {
+  return (
+    <ThemeProvider theme="light">
+      <Home {...props} />
+    </ThemeProvider>
   );
 }
 

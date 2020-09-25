@@ -1,0 +1,19 @@
+.introText {
+  font-size: 2rem;
+}
+
+.header .h1 {
+  font-size: 3rem;
+}
+
+.header {
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+
+@media screen and (min-width: 54rem) {
+  .header {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}

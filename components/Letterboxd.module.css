@@ -1,0 +1,49 @@
+.movie {
+  font-weight: bold;
+  color: var(--colors-text);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+
+.movieImage img {
+  max-width: 48px;
+}
+
+.movieImage p {
+  margin: 0;
+}
+
+.movieImage p:last-child:not(:first-child) {
+  display: none;
+}
+
+.movie:hover .movieTitle {
+  color: var(--colors-link);
+}
+
+.movie:hover .movieReview {
+  color: var(--colors-text);
+}
+
+.movieDescription {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.movieTitle {
+  display: flex;
+  flex-direction: column;
+  text-decoration: underline;
+  margin-bottom: 0.25rem;
+}
+
+.movieReview {
+  font-weight: normal;
+  text-decoration: none;
+  color: vars(--colors-text);
+}

@@ -27,3 +27,8 @@ a {
 a:hover {
   color: var(--colors-heading);
 }
+
+ul {
+  padding: 0;
+  list-style: none;
+}

@@ -1,0 +1,13 @@
+.item {
+  border-bottom: 1px solid var(--colors-border);
+  padding: 1rem 0.25rem;
+  color: currentColor;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+
+.item--last-child {
+  border-bottom: 0px;
+}

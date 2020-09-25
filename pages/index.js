@@ -133,13 +133,18 @@ function Instagram({ photos = [] }) {
   );
 }
 
-function Track({ name, artists }) {
+function Track({ name, artists, external_urls, ...rest}) {
   const [artist] = artists;
   return (
-    <div className={styles.track}>
-      <div className={styles.artistName}>{artist.name}</div>
-      <div className={styles.trackName}>{name}</div>
-    </div>
+    <a href={external_urls.spotify} target="_blank" className={styles.trackLink}>
+      <div className={styles.track}>
+        <img src={rest.album.images[2].url} />
+        <div className={styles.trackInfo}>
+          <div className={styles.artistName}>{artist.name}</div>
+          <div className={styles.trackName}>{name}</div>
+        </div>
+      </div>
+    </a>
   )
 }
 

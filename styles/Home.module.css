@@ -114,13 +114,36 @@
 }
 
 .track {
-  margin-bottom: 1rem;
   border-bottom: 1px solid #1d285c33;
-  padding-bottom: 1rem;
+  padding: 1rem .25rem;
+  color: currentColor;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+.trackInfo {
+  margin-left: 1rem;
+}
+
+.trackLink {
+  text-decoration: none;
+  display: block;
+  color: #1d285c;
+}
+
+.trackLink img {
+  width: 32px;
+  height: 32px;
+}
+
+.trackLink:hover {
+  color: #ff4d8d;
 }
 
 .artistName {
   font-weight: 600;
+  text-decoration: underline;
 }
 
 .movieDescription img { display: none}

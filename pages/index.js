@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { xml2json } from 'xml-js';
+import { getInstagram } from '../services/instagram';
+import { getTopTracks } from '../services/spotify';
+import { getLetterboxd } from '../services/letterboxd';
+
 
 const Header = () => {
   const className = [styles.section, styles.header].join(' ');
@@ -24,6 +27,20 @@ const Header = () => {
         currently a senior software engineer @ BuzzFeed
         <br />
         previously @ ESPN
+      </p>
+      <p>
+        <a
+          target="_blank"
+          href="mailto:devin@devinargenta.com?subject=I WAS LOOKING AT YOUR WEBSITE"
+        >
+          send me a compliment
+        </a>
+      </p>
+      <p>
+        look at my{' '}
+        <a target="_blank" href="https://www.instagram.com/devincantdraw">
+          poor art skills
+        </a>
       </p>
       <p>
         u can look at my{' '}
@@ -116,10 +133,33 @@ function Instagram({ photos = [] }) {
   );
 }
 
-export default function Home({ lbox = {}, ig = [] }) {
+function Track({ name, artists }) {
+  const [artist] = artists;
+  return (
+    <div className={styles.track}>
+      <div className={styles.artistName}>{artist.name}</div>
+      <div className={styles.trackName}>{name}</div>
+    </div>
+  )
+}
+
+function Spotify({ items }) {
+  const tracks = items.map(item => <li key={item.id}><Track {...item} /></li>)
+  return (
+      <section className={styles.section}>
+      <h2 className={styles.h1}>Top Tracks <Via text="spotify" /></h2>
+      <ul className={styles.topTracks}>
+        {tracks}
+      </ul>
+      </section>
+  )
+}
+
+export default function Home({ lbox = {}, ig = [], spotify }) {
   return (
     <div className={styles.container}>
       <Header />
+      {spotify && <Spotify {...spotify} /> }
       {ig && <Instagram photos={ig} />}
       {lbox && <LetterBoxed movies={lbox.item} link={lbox.link} />}
     </div>
@@ -127,46 +167,16 @@ export default function Home({ lbox = {}, ig = [] }) {
 }
 
 export async function getStaticProps() {
-  const token = process.env.IG_TOKEN;
-  const user = process.env.IG_USER;
-  const getMediaURL = (id) => {
-    return `https://graph.instagram.com/${id}/children?fields=media_url,id,media_type&access_token=${token}`;
-  };
 
-  async function getIG() {
-    try {
-      const res = await fetch(
-        `https://graph.instagram.com/${user}/media?fields=caption,media_url,id,media_type&access_token=${token}&limit=10`
-      );
-      const { data } = await res.json();
-      const carousels = data.filter(
-        ({ media_type }) => media_type === 'CAROUSEL_ALBUM'
-      );
-
-      for (let obj of data) {
-        if (obj.media_type === 'CAROUSEL_ALBUM') {
-          const req = await fetch(getMediaURL(obj.id));
-          const { data } = await req.json();
-          obj.media_url = data;
-        }
-      }
-
-      return data;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  }
-  const res = await fetch(`https://letterboxd.com/steelydevin/rss/`);
-  const xml = await res.text();
-  const { rss } = JSON.parse(xml2json(xml, { compact: true, spaces: 2 }));
-
-  const ig = await getIG();
+  const ig = await getInstagram();
+  const lbox = await getLetterboxd();
+  const spotify = await getTopTracks();
 
   return {
     props: {
-      lbox: rss.channel,
-      ig
+      lbox,
+      ig,
+      spotify
     },
     revalidate: 3600 // In seconds
   };

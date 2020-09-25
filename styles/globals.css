@@ -10,10 +10,10 @@ a {
   color: inherit;
   text-decoration: underline;
   font-weight: 600;
-  color: orange;
+  color: #ff4d8d;
 }
 a:hover {
-  color: currentColor;
+  color: #1d285c;
 }
 * {
   box-sizing: border-box;

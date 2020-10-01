@@ -1,4 +1,4 @@
-import { useContext, useState, createContext } from 'react';
+import { useContext, useState, createContext, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
@@ -11,6 +11,7 @@ import LetterBoxd from '../components/Letterboxd';
 import Section from '../components/Section';
 import Instagram from '../components/Instagram';
 import { SpotifyLastPlayed, SpotifyTopTracks } from '../components/Spotify';
+import useSWR from 'swr';
 
 const Theme = createContext();
 
@@ -37,6 +38,8 @@ function Via({ text, href }) {
   );
 }
 
+const fetcher = (url) => fetch(url).then((r) => r.json());
+
 function Home({ lbox = {}, ig = [], spotify = {} }) {
   const [theme, setTheme] = useContext(Theme);
 
@@ -49,6 +52,23 @@ function Home({ lbox = {}, ig = [], spotify = {} }) {
     />
   );
 
+  const initialLastPlayed = spotify.lastPlayed;
+
+  const { data: lastPlayed } = useSWR('/api/currently-playing', fetcher, {
+    initialData: initialLastPlayed
+  });
+
+  useEffect(() => {
+    const lastTheme = localStorage.getItem('last-theme');
+    if (lastTheme) {
+      setTheme(lastTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('last-theme', theme);
+  }, [theme]);
+
   return (
     <div className={`${styles.page} ${styles[theme]}`}>
       <div className={styles.container}>
@@ -58,13 +78,13 @@ function Home({ lbox = {}, ig = [], spotify = {} }) {
             onClick={() => setTheme(theme === LIGHT ? DARK : LIGHT)}
           >
             {theme === LIGHT
-              ? 'its too freakin bright; please turn out the lights'
-              : 'please turn on the lights i cant freakin see!'}
+              ? 'its too freakin bright!!!'
+              : 'its too damn dark!!!!'}
           </button>
         </Header>
         <Section>
           <h2 className={styles.h1}>current song {spotifyVia}</h2>
-          <SpotifyLastPlayed lastPlayed={spotify.lastPlayed} />
+          <SpotifyLastPlayed lastPlayed={lastPlayed} />
           <h2 className={styles.h1}>top tracks {spotifyVia}</h2>
           <SpotifyTopTracks topTracks={spotify.topTracks} />
         </Section>

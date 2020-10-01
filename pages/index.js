@@ -15,7 +15,7 @@ import useSWR from 'swr';
 
 const Theme = createContext();
 
-const useTheme = () => useContext(Theme);
+
 
 const THEMES = {
   LIGHT: 'light',
@@ -43,6 +43,14 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 function Home({ lbox = {}, ig = [], spotify = {} }) {
   const [theme, setTheme] = useContext(Theme);
 
+  useEffect(() => {
+    const lastTheme = localStorage.getItem('last-theme');
+    if (lastTheme) {
+      setTheme(lastTheme);
+    }
+  }, []);
+
+
   const { LIGHT, DARK } = THEMES;
 
   const spotifyVia = (
@@ -57,13 +65,6 @@ function Home({ lbox = {}, ig = [], spotify = {} }) {
   const { data: lastPlayed } = useSWR('/api/currently-playing', fetcher, {
     initialData: initialLastPlayed
   });
-
-  useEffect(() => {
-    const lastTheme = localStorage.getItem('last-theme');
-    if (lastTheme) {
-      setTheme(lastTheme);
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('last-theme', theme);

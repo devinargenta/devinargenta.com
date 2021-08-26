@@ -9,7 +9,7 @@ export default function ListItem({ className, children, as = 'a', href }) {
     <a
       className={classnames(styles.item, className)}
       href={href}
-      target="_blank"
+      target="_blank" rel="noreferrer"
     >
       {children}
     </a>

@@ -46,3 +46,7 @@ ul {
   padding: 0;
   list-style: none;
 }
+
+i {
+  color: var(--colors-heading)
+}

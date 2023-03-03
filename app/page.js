@@ -14,12 +14,15 @@ export default function Home() {
         style={{
           display: "flex",
           justifyContent: "space-between",
+          flex: "1 0 auto",
+          flexWrap: "wrap",
+          
         }}
       >
         <section
           style={{
-            marginRight: "3rem",
-            paddingRight: "3rem",
+        
+            marginBottom: "1rem"
           }}
         >
           <i>professionally...</i>

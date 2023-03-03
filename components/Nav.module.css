@@ -1,0 +1,7 @@
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    line-height: 2rem;
+    flex-wrap: wrap;
+}

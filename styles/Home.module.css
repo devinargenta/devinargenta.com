@@ -3,15 +3,21 @@
 .page {
   background: var(--bg-color);
   color: var(--colors-text);
+
+  padding: 0 2rem;
 }
 
 .container {
-  max-width: 85rem;
+
   margin: 0 auto;
   width: 100%;
   display: flex;
-  padding: 0 2rem;
+
+  max-width: 85rem;
+
+  flex-direction: column;
 }
+
 
 .h1 {
   font-weight: 900;
@@ -19,3 +25,11 @@
   font-size: 2rem;
 }
 
+
+.headingWrapper {
+  max-width: 85rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}

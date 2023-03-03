@@ -1,8 +1,8 @@
 
 :root{
-  --colors-text: #fcffbd;
-  --colors-link: #ff1a7d;
-  --colors-link-hover: #fff;
+  --colors-text: #d7e8ff;
+  --colors-link: #00ff85;
+  --colors-link-hover: #d7e8ff;
   --colors-heading: #00ff85;
   --bg-color: #141723;
   --colors-border: #ffffff20;
@@ -31,8 +31,15 @@ a {
   color: var(--colors-link);
 }
 
+nav {
+  padding: 2rem 2rem 0;
+}
+nav > a{
+  margin-right: 1rem;
+}
+
 a:hover {
-  color: var(--colors-heading);
+  color: var(--colors-link-hover);
 }
 
 ul {

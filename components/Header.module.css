@@ -4,16 +4,22 @@
 
 .h1 {
   font-size: 3rem;
+  color: var(--colors-heading);
 }
 
-.header {
-  grid-column-start: 1;
-  grid-column-end: 1;
+.headingWrapper {
+  max-width: 85rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (min-width: 54rem) {
-  .header {
-    grid-column-start: 1;
-    grid-column-end: 4;
+  .headingWrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
   }
 }

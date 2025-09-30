@@ -8,7 +8,7 @@ export default function Home() {
           borderBottom: "1px solid",
         }}
       >
-        software engineer, manager, dog haver, stuff enjoyer
+        software engineer, engineering manager, stuff enjoyer
       </h2>
       <div
         style={{
@@ -26,10 +26,12 @@ export default function Home() {
           }}
         >
           <i>professionally...</i>
-          <p>manager, platform @ availity</p>
-          <p>building platform tools and shared services</p>
-          <br></br>
-          <br></br>
+          <p>manager, clinical software @ availity</p>
+          <p>building next generation healthcare software and shared services</p>
+       <section>
+        <i>contact:</i> devin @ devin argenta dot com
+        </section>
+          <div style={{marginBottom: "1rem"}}></div>
           <i>personally...</i>
           <p>i like:</p>
           <ul>
@@ -38,6 +40,7 @@ export default function Home() {
             <li>distributed systems</li>
             <li>javascript</li>
             <li>dogs</li>
+            <li>art</li>
             <li>learning new things</li>
             <li>teaching others.</li>
           </ul>
@@ -45,10 +48,12 @@ export default function Home() {
         <section>
           <i>...previously</i>
           <p>manager, team lead @ diameter health (now availity)</p>
-          <p>@ BuzzFeed</p>
-          <p>@ ESPN</p>
+          <p>Senior Engineer / Manager @ BuzzFeed</p>
+          <p>Senior Front End @ ESPN</p>
+          <p>Senior Front End @ Finalsite</p>
           <p>@ self</p>
         </section>
+        
       </div>
     </main>
   );

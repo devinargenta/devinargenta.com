@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import styles from "../styles/Home.module.css";
 import Header from "../components/Header";
+import { Analytics } from "@vercel/analytics/next"
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

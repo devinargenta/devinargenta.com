@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
           <Header />
           <div className={styles.container}>{children}</div>
         </div>
+        <Analytics />
       </body>
     </html>
   );
